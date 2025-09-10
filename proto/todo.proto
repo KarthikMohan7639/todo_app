@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option csharp_namespace = "TodoApp.Grpc";
+
+package todoapp;
+
+// Todo item message
+message TodoItem {
+  int32 id = 1;
+  string description = 2;
+  TodoStatus status = 3;
+}
+
+// Todo status enumeration
+enum TodoStatus {
+  PENDING = 0;
+  COMPLETED = 1;
+}
+
+// Request message for adding a new todo item
+message AddTodoRequest {
+  string description = 1;
+}
+
+// Response message for adding a todo item
+message AddTodoResponse {
+  TodoItem todo_item = 1;
+  bool success = 2;
+  string message = 3;
+}
+
+// Request message for updating todo status
+message UpdateTodoStatusRequest {
+  int32 id = 1;
+}
+
+// Response message for updating todo status
+message UpdateTodoStatusResponse {
+  TodoItem todo_item = 1;
+  bool success = 2;
+  string message = 3;
+}
+
+// Request message for getting all todos
+message GetTodosRequest {
+  // Empty - no parameters needed
+}
+
+// Response message for getting all todos
+message GetTodosResponse {
+  repeated TodoItem todo_items = 1;
+  bool success = 2;
+  string message = 3;
+}
+
+// Todo service definition
+service TodoService {
+  // Add a new todo item
+  rpc AddTodo(AddTodoRequest) returns (AddTodoResponse);
+  
+  // Update todo item status (toggle)
+  rpc UpdateTodoStatus(UpdateTodoStatusRequest) returns (UpdateTodoStatusResponse);
+  
+  // Get all todo items
+  rpc GetTodos(GetTodosRequest) returns (GetTodosResponse);
+}

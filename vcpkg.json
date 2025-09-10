@@ -1,0 +1,13 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Todo List Application with gRPC",
+  "homepage": "https://github.com/KarthikMohan7639/todo_app",
+  "documentation": "https://github.com/KarthikMohan7639/todo_app",
+  "supports": "windows & !uwp",
+  "dependencies": [
+    "grpc",
+    "protobuf",
+    "abseil"
+  ]
+}
