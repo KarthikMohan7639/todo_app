@@ -1,3 +1,0 @@
-/home/runner/work/todo_app/todo_app/server/CMakeFiles/todo_server.dir
-/home/runner/work/todo_app/todo_app/server/CMakeFiles/edit_cache.dir
-/home/runner/work/todo_app/todo_app/server/CMakeFiles/rebuild_cache.dir
