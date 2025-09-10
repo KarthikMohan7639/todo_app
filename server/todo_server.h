@@ -27,7 +27,7 @@ private:
     void handleClient(int clientSocket);
     std::string handleRequest(const std::string& request);
     std::string parseHttpBody(const std::string& request);
-    std::string createHttpResponse(const std::string& body, const std::string& contentType = "application/json");
+    std::string createHttpResponse(const std::string& body, const std::string& contentType = "application/json", const std::string& status = "200 OK");
     
     // WebSocket handling (simplified notification system)
     void notifyClients(const std::string& message);
