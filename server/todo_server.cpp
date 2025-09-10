@@ -147,7 +147,11 @@ std::string TodoServer::handleRequest(const std::string& request) {
             std::string body = parseHttpBody(request);
             
             // Simple JSON parsing - look for description field
-            size_t descPos = body.find("\"description\":");
+            size_t descPos = body.find("\"Description\":");
+            if (descPos == std::string::npos) {
+                descPos = body.find("\"description\":");
+            }
+            
             if (descPos != std::string::npos) {
                 size_t startQuote = body.find("\"", descPos + 14);
                 size_t endQuote = body.find("\"", startQuote + 1);
@@ -163,7 +167,7 @@ std::string TodoServer::handleRequest(const std::string& request) {
                 }
             }
             
-            return createHttpResponse("{\"error\":\"Invalid request body\"}", "application/json");
+            return createHttpResponse("{\"error\":\"Invalid request body\"}", "application/json", "400 Bad Request");
         }
         else if (method == "PUT" && path.find("/api/todos/") == 0) {
             // Extract ID from path
@@ -198,9 +202,9 @@ std::string TodoServer::parseHttpBody(const std::string& request) {
     return "";
 }
 
-std::string TodoServer::createHttpResponse(const std::string& body, const std::string& contentType) {
+std::string TodoServer::createHttpResponse(const std::string& body, const std::string& contentType, const std::string& status) {
     std::ostringstream response;
-    response << "HTTP/1.1 200 OK\r\n"
+    response << "HTTP/1.1 " << status << "\r\n"
              << "Access-Control-Allow-Origin: *\r\n"
              << "Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS\r\n"
              << "Access-Control-Allow-Headers: Content-Type\r\n"
