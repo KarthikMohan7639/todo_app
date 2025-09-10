@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "l7PYlzpU9pwVjMEa0HdNMFmYFqNXqtRFFgMIObcabC05SDoXtb2Ry/0EsKAbnKYy49jzWy1OiKuiUJn8LnIFEw==",
+  "success": true,
+  "projectFilePath": "/home/runner/work/todo_app/todo_app/client/TodoConsoleClient/TodoConsoleClient.csproj",
+  "expectedPackageFiles": [
+    "/home/runner/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

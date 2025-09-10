@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/todo_server.dir/link.d CMakeFiles/todo_server.dir/main.cpp.o CMakeFiles/todo_server.dir/todo_server.cpp.o CMakeFiles/todo_server.dir/todo_item.cpp.o -o todo_server
