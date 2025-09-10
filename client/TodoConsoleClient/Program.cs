@@ -207,8 +207,15 @@ namespace TodoConsoleClient
                 return;
             }
 
-            await _apiClient!.UpdateTodoStatusAsync(todoId);
-            Console.WriteLine($"Toggled status for todo {todoId}");
+            try
+            {
+                await _apiClient!.UpdateTodoStatusAsync(todoId);
+                Console.WriteLine($"Toggled status for todo {todoId}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to toggle todo: {ex.Message}");
+            }
         }
     }
 }

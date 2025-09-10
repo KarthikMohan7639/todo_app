@@ -158,6 +158,16 @@ std::string TodoServer::handleRequest(const std::string& request) {
                 
                 if (startQuote != std::string::npos && endQuote != std::string::npos) {
                     std::string description = body.substr(startQuote + 1, endQuote - startQuote - 1);
+                    
+                    // Validate description is not empty or whitespace-only
+                    std::string trimmed = description;
+                    trimmed.erase(0, trimmed.find_first_not_of(" \t\n\r"));
+                    trimmed.erase(trimmed.find_last_not_of(" \t\n\r") + 1);
+                    
+                    if (trimmed.empty()) {
+                        return createHttpResponse("{\"error\":\"Description cannot be empty\"}", "application/json", "400 Bad Request");
+                    }
+                    
                     auto newItem = addTodoItem(description);
                     
                     // Notify all connected clients
@@ -172,17 +182,24 @@ std::string TodoServer::handleRequest(const std::string& request) {
         else if (method == "PUT" && path.find("/api/todos/") == 0) {
             // Extract ID from path
             std::string idStr = path.substr(11); // "/api/todos/".length() = 11
-            int id = std::stoi(idStr);
             
-            if (updateTodoStatus(id)) {
-                std::string jsonResponse = getTodoListJson();
+            try {
+                int id = std::stoi(idStr);
                 
-                // Notify all connected clients
-                notifyClients("ITEM_UPDATED:" + std::to_string(id));
-                
-                return createHttpResponse("{\"success\":true}");
-            } else {
-                return createHttpResponse("{\"error\":\"Todo item not found\"}", "application/json");
+                if (updateTodoStatus(id)) {
+                    std::string jsonResponse = getTodoListJson();
+                    
+                    // Notify all connected clients
+                    notifyClients("ITEM_UPDATED:" + std::to_string(id));
+                    
+                    return createHttpResponse("{\"success\":true}");
+                } else {
+                    return createHttpResponse("{\"error\":\"Todo item not found\"}", "application/json", "404 Not Found");
+                }
+            } catch (const std::invalid_argument& e) {
+                return createHttpResponse("{\"error\":\"Invalid todo ID format\"}", "application/json", "400 Bad Request");
+            } catch (const std::out_of_range& e) {
+                return createHttpResponse("{\"error\":\"Todo ID out of range\"}", "application/json", "400 Bad Request");
             }
         }
     }
