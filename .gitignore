@@ -1,0 +1,39 @@
+# Build outputs
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+
+# C++ build files
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/Makefile
+**/*.o
+**/todo_server
+
+# .NET build files
+**/*.dll
+**/*.pdb
+**/*.exe
+**/*.runtimeconfig.json
+**/*.deps.json
+
+# IDE files
+**/.vs/
+**/.vscode/
+**/*.user
+**/*.suo
+**/*.sln.docstates
+
+# OS files
+**/Thumbs.db
+**/.DS_Store
+
+# Logs
+**/*.log
+**/logs/
+
+# Temporary files
+**/tmp/
+**/temp/
