@@ -35,6 +35,7 @@ namespace TodoClient
             {
                 _isCompleted = value;
                 OnPropertyChanged(nameof(IsCompleted));
+                OnPropertyChanged(nameof(Status));
             }
         }
 
@@ -46,17 +47,5 @@ namespace TodoClient
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
-
-    public class AddTodoRequest
-    {
-        public string Description { get; set; } = string.Empty;
-    }
-
-    public class TodoResponse
-    {
-        public int Id { get; set; }
-        public string Description { get; set; } = string.Empty;
-        public string Status { get; set; } = string.Empty;
     }
 }

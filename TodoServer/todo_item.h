@@ -5,8 +5,8 @@
 #include <memory>
 
 enum class TodoStatus {
-    PENDING,
-    COMPLETED
+    PENDING = 0,
+    COMPLETED = 1
 };
 
 class TodoItem {
@@ -20,7 +20,6 @@ public:
     void setStatus(TodoStatus status) { status_ = status; }
     void toggleStatus();
     
-    std::string toJson() const;
     std::string statusToString() const;
 
 private:

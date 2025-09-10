@@ -3,6 +3,7 @@
 **/obj/
 **/Debug/
 **/Release/
+**/build/
 
 # C++ build files
 **/CMakeFiles/
@@ -11,6 +12,18 @@
 **/Makefile
 **/*.o
 **/todo_server
+**/todo_test_server
+
+# Generated protobuf files
+**/*.pb.cc
+**/*.pb.h
+**/*.grpc.pb.cc
+**/*.grpc.pb.h
+
+# vcpkg
+**/vcpkg_installed/
+**/vcpkg.targets
+**/vcpkg.props
 
 # .NET build files
 **/*.dll
@@ -25,6 +38,8 @@
 **/*.user
 **/*.suo
 **/*.sln.docstates
+**/*.vcxproj.filters
+**/*.vcxproj.user
 
 # OS files
 **/Thumbs.db
